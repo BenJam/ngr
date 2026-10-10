@@ -121,9 +121,18 @@
   max-width: 8ch;
 }
 
+// Tagline + CTA: side by side with a clear gap; the button wraps below on narrow screens
+.hero__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem clamp(1.5rem, 5vw, 3.5rem);
+  margin-top: 1.5rem;
+}
+
 .hero__tagline {
   display: inline-block;
-  margin: 1.5rem 0 2rem;
+  margin: 0;
   padding: 0.25rem 0.75rem;
   background: $red;
   color: $paper;

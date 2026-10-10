@@ -4,8 +4,10 @@ layout: default
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
     <h1 id="hero-title" class="hero__title">{{ site.title }}</h1>
-    <p class="hero__tagline">{{ site.description }}</p>
-    {% if page.cta %}<a class="button" href="{{ page.cta.url | relative_url }}">{{ page.cta.label }}</a>{% endif %}
+    <div class="hero__row">
+      <p class="hero__tagline">{{ site.description }}</p>
+      {% if page.cta %}<a class="button" href="{{ page.cta.url | relative_url }}">{{ page.cta.label }}</a>{% endif %}
+    </div>
   </div>
 </section>
 
