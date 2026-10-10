@@ -13,8 +13,15 @@ NGR is currently by invitation only. Existing members should send new member rec
 
 NGR isn't a British Cycling affiliated club. Riders are free to race for their current club(s). If anyone asks, NGR is a sponsor, which every governing body we know of allows.
 
-## Benefits & Costs
+## Costs & Benefits 
 
-- A sticker pack for your bikes (winter *and* summer). Wear it, start a conversation, never hard-sell.
+Membership due are currently £10/year which includes:
+
+- A sticker pack for your bikes (winter *and* summer)
 - An invite to the team chat, events, and our (bad) results board.
-- All for £5 a year, which covers stickers, web hosting and the domain, and goes towards design.
+
+## Membership terms
+
+Members should ride and race with the best interests of the club in mind at all times. Riders found not to be upholding the values of the club will be removed without warning.  
+
+Members receive a sticker pack to signify their membership, to encourage curiosity, and engage others in a discussion about our values - but never to ‘sell’ the club to potential members.
