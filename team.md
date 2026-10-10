@@ -15,7 +15,7 @@ NGR is currently by invitation only. Existing members should send new member rec
 
 NGR isn't a British Cycling affiliated club. Riders are free to race for their current club(s). If anyone asks, NGR is a sponsor, which every governing body we know of allows.
 
-## CBenefits & Costs
+## Benefits & Costs
 
 - A sticker pack for your bikes (winter *and* summer). Wear it, start a conversation, never hard-sell.
 - An invite to the team chat, events, and our (bad) results board.

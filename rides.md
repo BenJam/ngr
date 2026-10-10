@@ -26,6 +26,4 @@ Each chapter runs a regular Tuesday-night training ride somewhere that suits the
 
 ## Start a chapter
 
-Fancy getting one going near you? Members can get in touch to set up a new chapter or ride.
-
-<p class="placeholder">Placeholder: rides contact to be confirmed.</p>
+Fancy getting one going near you? Get in touch to set up a new chapter chapter@nogoodracing.cc.
