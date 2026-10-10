@@ -1,0 +1,22 @@
+title: Team Name
+description: Bicycle racing team — placeholder tagline
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-seo-tag
+
+# Header navigation (rendered as buttons by _layouts/default.html)
+nav:
+  - title: About
+    url: /about/
+  - title: Rides
+    url: /rides/
+  - title: Team
+    url: /team/
+  - title: Sponsors
+    url: /sponsors/
+
+exclude:
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
