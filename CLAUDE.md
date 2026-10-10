@@ -1,8 +1,46 @@
 # No Good Racing — site guide
 
-Jekyll site hosted on GitHub Pages (custom domain in `CNAME`). The theme lives in this repo (`_layouts/`, `_includes/`, `_sass/`) — no remote theme, no plugins beyond what GitHub Pages supports natively. Keep it that way: no custom Ruby plugins, no build step outside `jekyll build`.
+Jekyll site for No Good Racing, hosted on GitHub Pages at https://nogoodracing.cc (repo `BenJam/ngr`, deployed from `main` / root; custom domain in `CNAME`). The theme lives in this repo (`_layouts/`, `_includes/`, `_sass/`) — no remote theme, no plugins beyond what GitHub Pages supports natively. Keep it that way: no custom Ruby plugins, no build step outside `jekyll build`.
 
-Local dev: `bundle exec jekyll serve --livereload` → http://127.0.0.1:4000 (restart after editing `_config.yml`).
+## Starting a session
+
+1. `git status` and `git log --oneline -10` — the user edits and commits copy themselves between sessions; take their changes as the current state.
+2. Start the dev server (background, it stops after ~2h in Claude Code):
+   ```sh
+   export LANG=en_GB.UTF-8 && eval "$(rbenv init - zsh)"; bundle exec jekyll serve --livereload
+   ```
+   → http://127.0.0.1:4000. Livereload covers pages, Sass and `_data/`; **restart after editing `_config.yml`**.
+
+## How we work
+
+- Plan first for anything non-trivial; the user approves before edits.
+- Commit locally with clear messages; **don't push** — this environment has no GitHub credentials and the user won't grant them. The user reviews locally and pushes from their own terminal.
+- When the user has staged edits of their own, commit only your paths (`git commit -- <paths>`).
+- Verify with a build (`bundle exec jekyll build`, or `-d <scratch dir>` to leave `_site` alone) and `curl` against the dev server. Headless Chrome crashes in this sandbox, so no screenshots — say so and ask the user to check visually (desktop + ~400px).
+- Test risky changes in a scratch copy, not on real data (e.g. rider entries/photos).
+- Homebrew belongs to another macOS user: you can't `brew install`; ask the user to run it.
+
+## Gotchas
+
+- `LANG` must be UTF-8 or the Sass compiler (Ruby Sass via `github-pages`) fails on any non-ASCII character. Keep `.scss` files ASCII anyway.
+- `theme: null` in `_config.yml` is deliberate — without it `github-pages` silently applies the Primer theme.
+- Sass is the old Ruby Sass: `@import`, no `@use`, no Sass `min()/max()`. Plain CSS `clamp()` passes through fine.
+- macOS tools are BSD: `sed -i ''`, no GNU `0,/re/` ranges, `stat -f%z`. macOS `iconv` exits 1 after transliterating.
+- GitHub Pages is case-sensitive; macOS isn't. Lowercase filenames.
+- System Ruby is 2.6 — always go through rbenv (3.4.7, `.ruby-version`).
+
+## Site map
+
+| Path | Source | Notes |
+|---|---|---|
+| `/` | `index.md` (`layout: home`) | Hero (title, tagline, CTA from front matter) + cards from `cards:` front matter. 5 cards: one row ≥75em, 3+2 from 56em, stacked below. |
+| `/about/` | `about.md` | Manifesto copy, disciplines as `.tag-list`, "What's with the name?" |
+| `/rides/` | `rides.md` | Chapter cards; only Shrewsbury running, rest TBC |
+| `/team/` | `team.md` + `_data/riders.yml` | Rider roster (see Riders below) |
+| `/join/` | `join.md` | Invitation-only joining, club status, benefits & costs |
+| `/sponsors/` | `sponsors.md` | No sponsors yet |
+
+Nav (header + footer) comes from `nav:` in `_config.yml`. Section pages use `layout: page` with `title` + optional `intro` front matter. Tooling: `scripts/add-rider`. Team-facing docs: `README.md`.
 
 ## Voice
 
@@ -12,7 +50,7 @@ Straightforward, a bit punky, always welcoming. "Serious, but fun."
 - Humour is self-deprecating or aimed at results-obsessed racing culture — never at people. "(bad) results board" good; mocking slow riders never.
 - No gatekeeping. Never ask about FTP, training volume, kit or bike cost. Acknowledge life happens off the bike.
 - Any discipline counts: TT, road, track, gravel, CX, XC, enduro, DH.
-- Swearing tops out at acronyms: "BS", "AF".
+- Swearing tops out at acronyms ("BS", "AF") or asterisked words — the tagline is "Bike racing, without the bullsh*t" (the team's call). Nothing stronger, nothing uncensored.
 - Sentence case for prose; ALL CAPS only via the display font on headings (write headings in normal case in Markdown — CSS uppercases them).
 - Reusable lines: "No pressure, just good times." · "Serious, but fun." · "Because life happens off the bike too."
 
@@ -67,3 +105,12 @@ Tokens in `_sass/_tokens.scss`.
 ## Accessibility (non-negotiable)
 
 WCAG AA contrast (4.5:1 body, 3:1 large text/UI), visible `:focus-visible` on everything interactive, skip link, landmarks, `aria-current` on nav, underlined links in body text, ≥44px tap targets, respect `prefers-reduced-motion`, never rely on colour alone.
+
+## Status and open items (as of 2026-10-12)
+
+Live and pushed. Logo, favicon and web app icons are in (from the team's designer, 2026-10-12). Waiting on the team for:
+
+- **Riders** — `_data/riders.yml` still has three "Rider Name" placeholders; `scripts/add-rider` offers to remove them on first real add. B&W→colour hover not yet eyeballed with a real photo.
+- **Rides** — chapters other than Shrewsbury are TBC; meeting venues/times not published (privacy rule above).
+- **Sponsors** — none yet.
+- **French version** — discussed and parked; English only for now. If revived: per-language pages under `/fr/`, UI strings + nav in `_data/i18n.yml`, `ref:` front matter to pair translations, header language switcher, `hreflang` alternates (no i18n plugins — GitHub Pages doesn't allow them). French copy needs a native-speaker review.
