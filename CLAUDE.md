@@ -33,7 +33,15 @@ Straightforward, a bit punky, always welcoming. "Serious, but fun."
 
 ## Privacy
 
-Don't publish personal names, personal links, email addresses, or exact meeting venues/times unless the team has explicitly approved that specific item. Use a visible placeholder instead.
+Approved for publication — team role addresses, always as `mailto:` links (`[x@nogoodracing.cc](mailto:x@nogoodracing.cc)`):
+
+| Address | Use | Page |
+|---|---|---|
+| `join@nogoodracing.cc` | Members recommending new members | Team |
+| `chapter@nogoodracing.cc` | Starting a new chapter / ride | Rides |
+| `sponsors@nogoodracing.cc` | Sponsorship enquiries | Sponsors |
+
+Anything else — personal names, personal links, other email addresses, exact meeting venues/times — stays off the site until the team explicitly approves that specific item. Use a visible `.placeholder` block in the meantime, and remove it once the real content goes in.
 
 ## Visual system
 

@@ -26,4 +26,4 @@ Each chapter runs a regular Tuesday-night training ride somewhere that suits the
 
 ## Start a chapter
 
-Fancy getting one going near you? Get in touch to set up a new chapter chapter@nogoodracing.cc.
+Fancy getting one going near you? Get in touch to set up a new chapter: [chapter@nogoodracing.cc](mailto:chapter@nogoodracing.cc).

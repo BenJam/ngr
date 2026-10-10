@@ -7,9 +7,7 @@ intro: No trials, no watts, no BS. Just people who like racing bikes.
 
 ## Joining NGR
 
-NGR is currently by invitation only. Existing members should send new member recommendations to join@nogoodracing.cc.
-
-<p class="placeholder">Placeholder: how members recommend someone, contact to be confirmed.</p>
+NGR is currently by invitation only. Existing members should send new member recommendations to [join@nogoodracing.cc](mailto:join@nogoodracing.cc).
 
 ## Is NGR a club?
 
