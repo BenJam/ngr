@@ -22,4 +22,4 @@ cards:
     text: The brands helping us have a good time.
 ---
 
-<p class="lead">We race bikes for the fun, not results. No pressure, just good times.</p>
+<p class="lead">We race bikes for the fun, not results.</p>
