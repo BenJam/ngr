@@ -3,7 +3,7 @@ layout: home
 cta:
   label: What's this all about?
   url: /about/
-cards_title: Step this way
+cards_title: Want to know more?
 cards:
   - title: About
     url: /about/
