@@ -13,6 +13,9 @@ cards:
     text: Tuesday nights, local chapters, post-ride refreshment.
   - title: Team
     url: /team/
+    text: The riders flying the NGR flag.
+  - title: Join
+    url: /join/
     text: How joining works. Spoiler, it's £5 and you get stickers.
   - title: Sponsors
     url: /sponsors/

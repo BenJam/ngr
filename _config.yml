@@ -19,6 +19,8 @@ nav:
     url: /rides/
   - title: Team
     url: /team/
+  - title: Join
+    url: /join/
   - title: Sponsors
     url: /sponsors/
 

@@ -1,0 +1,13 @@
+{% assign rider = include.rider %}
+<li class="card rider">
+  {% if rider.photo %}
+    <img class="rider__photo" src="{{ rider.photo | relative_url }}" alt="{{ rider.name }}" width="800" height="800" loading="lazy">
+  {% else %}
+    {% assign parts = rider.name | split: " " %}
+    <div class="rider__photo rider__photo--initials" aria-hidden="true">{{ parts.first | slice: 0 | upcase }}{% if parts.size > 1 %}{{ parts.last | slice: 0 | upcase }}{% endif %}</div>
+  {% endif %}
+  <div class="rider__body">
+    <h3 class="card__title">{{ rider.name }}</h3>
+    <p class="rider__where">Racing in <span class="tag">{{ rider.racing_in }}</span></p>
+  </div>
+</li>

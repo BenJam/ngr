@@ -113,3 +113,47 @@
 @media (prefers-reduced-motion: reduce) {
   .button:hover { transform: none; }
 }
+
+// Riders (Team page) --------------------------------------------------
+.rider-grid {
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+}
+
+.rider {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-top-width: 0.1875rem; // photo stripe replaces the card's red top
+  border-top-color: $ink;
+}
+
+.rider__photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-bottom: $stripe solid $red;
+}
+
+.rider__photo--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $ink;
+  color: $paper;
+  font-family: $font-display;
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1;
+}
+
+.rider__body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.rider__where {
+  font-size: 1rem;
+  color: $grey;
+
+  .tag { margin-left: 0.25rem; }
+}

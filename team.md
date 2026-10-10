@@ -2,19 +2,17 @@
 layout: page
 title: Team
 permalink: /team/
-intro: No trials, no watts, no BS. Just people who like racing bikes.
+intro: The riders. Results not included.
 ---
 
-## Joining NGR
+{% if site.data.riders and site.data.riders.size > 0 %}
+<ul class="card-grid rider-grid" role="list">
+  {% for rider in site.data.riders %}
+    {% include rider-card.html rider=rider %}
+  {% endfor %}
+</ul>
+{% else %}
+Rider profiles coming soon.
+{% endif %}
 
-NGR is currently by invitation only. Existing members should send new member recommendations to [join@nogoodracing.cc](mailto:join@nogoodracing.cc).
-
-## Is NGR a club?
-
-NGR isn't a British Cycling affiliated club. Riders are free to race for their current club(s). If anyone asks, NGR is a sponsor, which every governing body we know of allows.
-
-## Benefits & Costs
-
-- A sticker pack for your bikes (winter *and* summer). Wear it, start a conversation, never hard-sell.
-- An invite to the team chat, events, and our (bad) results board.
-- All for £5 a year, which covers stickers, web hosting and the domain, and goes towards design.
+Want to be on here? [Here's how joining works](/join/).

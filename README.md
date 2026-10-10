@@ -22,5 +22,6 @@ The `github-pages` gem pins Jekyll and plugins to the versions GitHub Pages uses
 - `_layouts/` — `default` (shell), `home` (hero + cards), `page` (title band + content)
 - `_includes/` — site header and footer
 - `_sass/` + `assets/css/main.scss` — the theme (tokens, base, layout, components)
-- `about.md`, `rides.md`, `team.md`, `sponsors.md` — section pages
+- `about.md`, `rides.md`, `team.md`, `join.md`, `sponsors.md` — section pages
+- `_data/riders.yml` + `assets/images/riders/` — Team page riders (see `CLAUDE.md`)
 - `CLAUDE.md` — voice, visual and accessibility guidelines for the site

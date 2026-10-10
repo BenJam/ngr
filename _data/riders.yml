@@ -1,0 +1,21 @@
+# Team riders, shown on /team/ in this order.
+#
+# Only add riders who've agreed to be on the site, and remove anyone who asks.
+#   name:      as the rider wants it shown
+#   photo:     optional; square JPG/WebP (~800px, under 200KB) in assets/images/riders/
+#              e.g. /assets/images/riders/rider-name.jpg. Leave blank to show initials.
+#   racing_in: town/city or region only, never an address
+#
+# The entries below are placeholders. Replace them with real riders.
+
+- name: Rider Name
+  photo:
+  racing_in: Shrewsbury
+
+- name: Rider Name
+  photo:
+  racing_in: Bath
+
+- name: Rider Name
+  photo:
+  racing_in: London
