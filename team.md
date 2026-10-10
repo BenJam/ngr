@@ -5,17 +5,17 @@ permalink: /team/
 intro: No trials, no watts, no BS. Just people who like racing bikes.
 ---
 
-## How to join
+## Joining NGR
 
-Joining is by invitation. An existing member recommends you. That's how we keep the vibe right.
+NGR is currently by invitation only. Existing members should send new member recommendations to join@nogoodracing.cc.
 
 <p class="placeholder">Placeholder: how members recommend someone, contact to be confirmed.</p>
 
-## Keep your club
+## Is NGR a club?
 
-NGR isn't a British Cycling affiliated club, so stay in your current club(s) and race for them as normal. If anyone asks, NGR is a sponsor, which every governing body we know of allows.
+NGR isn't a British Cycling affiliated club. Riders are free to race for their current club(s). If anyone asks, NGR is a sponsor, which every governing body we know of allows.
 
-## What you get
+## CBenefits & Costs
 
 - A sticker pack for your bikes (winter *and* summer). Wear it, start a conversation, never hard-sell.
 - An invite to the team chat, events, and our (bad) results board.

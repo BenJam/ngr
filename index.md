@@ -16,7 +16,7 @@ cards:
     text: How joining works. Spoiler, it's £5 and some stickers.
   - title: Sponsors
     url: /sponsors/
-    text: The good people helping us have a good time.
+    text: The brands helping us have a good time.
 ---
 
 <p class="lead">We race bikes for the fun of getting to the finish line, not for the results. No pressure, just good times.</p>
