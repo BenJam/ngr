@@ -2,7 +2,7 @@
 layout: page
 title: Team
 permalink: /team/
-intro: The riders. Results not included.
+intro: Just people who like racing bikes...
 ---
 
 {% if site.data.riders and site.data.riders.size > 0 %}

@@ -2,7 +2,7 @@
 layout: page
 title: Join
 permalink: /join/
-intro: No trials, no watts, no BS. Just people who like racing bikes.
+intro: Seen us at a race near you? Get involved...
 ---
 
 ## Joining NGR
