@@ -1,6 +1,6 @@
 # No Good Racing
 
-Bike racing, without the BS. Jekyll site hosted on GitHub Pages at https://nogoodracing.cc.
+Bike racing, without the bullsh\*t. Jekyll site hosted on GitHub Pages at https://nogoodracing.cc.
 
 ## Local development
 
