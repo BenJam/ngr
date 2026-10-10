@@ -2,12 +2,12 @@
 layout: page
 title: Rides
 permalink: /rides/
-intro: Tuesday nights. Local chapters. Home before dark, ideally.
+intro: See you next tuesday, wednesday, or thursday.
 ---
 
 ## How it works
 
-Each chapter runs a regular Tuesday-night training ride somewhere that suits the local crew. Members sort it between themselves: meeting point, route, and (most importantly) where to go afterwards.
+Each chapter runs a regular midweek training ride. Members agree between themselves: meeting point, route, and (most importantly) where to go afterwards:
 
 ## Chapters
 
