@@ -15,9 +15,9 @@ layout: default
 
 {% if page.cards %}
 <section class="section section--alt" aria-labelledby="sections-title">
-  <div class="wrap">
+  <div class="wrap wrap--wide">
     <h2 id="sections-title" class="section__title">{{ page.cards_title | default: "Find your way" }}</h2>
-    <ul class="card-grid" role="list">
+    <ul class="card-grid card-grid--home" role="list">
       {% for card in page.cards %}
       <li class="card">
         <h3 class="card__title"><a href="{{ card.url | relative_url }}">{{ card.title }}</a></h3>

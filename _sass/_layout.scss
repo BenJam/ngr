@@ -4,6 +4,9 @@
   padding-inline: $gutter;
 }
 
+// For card bands that can run wider than the text column
+.wrap--wide { max-width: $wrap-wide; }
+
 // Header -------------------------------------------------------------
 .site-header {
   position: sticky;

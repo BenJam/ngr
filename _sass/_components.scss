@@ -40,6 +40,24 @@
   list-style: none;
 }
 
+// Home page: 3 + 2 on mid widths, all five on one row on wide screens.
+// Breakpoints are in em so browser zoom steps back down to fewer columns.
+.card-grid--home {
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1.25rem;
+
+  .card { padding: 1rem 1.25rem; }
+
+  @media (min-width: 56em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 75em) {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+}
+
 .card {
   position: relative;
   background: $paper;
