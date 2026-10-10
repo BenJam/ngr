@@ -154,6 +154,26 @@
   border-bottom: $stripe solid $red;
 }
 
+.rider__media {
+  position: relative;
+  aspect-ratio: 1;
+  border-bottom: $stripe solid $red;
+
+  .rider__photo {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border-bottom: 0;
+  }
+}
+
+.rider__photo--colour {
+  opacity: 0;
+  transition: opacity 0.25s;
+
+  .rider:hover & { opacity: 1; }
+}
+
 .rider__photo--initials {
   display: flex;
   align-items: center;

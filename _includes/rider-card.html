@@ -1,6 +1,12 @@
 {% assign rider = include.rider %}
 <li class="card rider">
-  {% if rider.photo %}
+  {% if rider.photo and rider.photo_bw %}
+    {% comment %} B&W by default; colour fades in on hover {% endcomment %}
+    <div class="rider__media">
+      <img class="rider__photo" src="{{ rider.photo_bw | relative_url }}" alt="" width="800" height="800" loading="lazy">
+      <img class="rider__photo rider__photo--colour" src="{{ rider.photo | relative_url }}" alt="{{ rider.name }}" width="800" height="800" loading="lazy">
+    </div>
+  {% elsif rider.photo %}
     <img class="rider__photo" src="{{ rider.photo | relative_url }}" alt="{{ rider.name }}" width="800" height="800" loading="lazy">
   {% else %}
     {% assign parts = rider.name | split: " " %}

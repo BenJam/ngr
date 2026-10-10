@@ -4,6 +4,11 @@
 #   name:      as the rider wants it shown
 #   photo:     optional; square JPG/WebP (~800px, under 200KB) in assets/images/riders/
 #              e.g. /assets/images/riders/rider-name.jpg. Leave blank to show initials.
+#   photo_bw:  optional; black & white version of the same photo. When set, the card
+#              shows B&W and fades to colour on hover.
+#
+# Easiest way to add a rider: scripts/add-rider (makes both photos, strips metadata,
+# and adds the entry here).
 #   racing_in: town/city or region only, never an address
 #
 # The entries below are placeholders. Replace them with real riders.

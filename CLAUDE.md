@@ -47,10 +47,12 @@ Anything else — personal names, personal links, other email addresses, exact m
 
 Rider names and photos are personal data. Rider profiles are the exception to the rule above: the team adds them, and each one is consent-based.
 
-- Data: `_data/riders.yml` (`name`, `photo`, `racing_in`), rendered by `_includes/rider-card.html`. Order in the file = order on the page.
-- Only add riders who've agreed to be on the site; remove anyone who asks, photo file included.
+- Data: `_data/riders.yml` (`name`, `photo`, `photo_bw`, `racing_in`), rendered by `_includes/rider-card.html`. Order in the file = order on the page.
+- Add riders with `scripts/add-rider` (ImageMagick): crops, makes colour + B&W, strips metadata, asks for consent, appends the YAML entry. Prefer it to hand-editing.
+- Only add riders who've agreed to be on the site; remove anyone who asks, both photo files included.
 - `racing_in` is a town/city or region — never an address.
-- Photos: `assets/images/riders/`, square JPG/WebP, ~800px, under 200KB, named after the rider (`first-last.jpg`). No photo → initials block is shown automatically.
+- Photos: `assets/images/riders/`, square JPG, 800px, under 200KB, `first-last.jpg` + `first-last-bw.jpg`. **Every photo must have its metadata stripped** (`magick … -strip`) — phone photos carry GPS location.
+- Display: with `photo_bw`, the card shows B&W and fades to colour on hover (instant under reduced motion); `photo` only → colour; no photo → initials block.
 - Don't invent riders or copy names from elsewhere; placeholders stay as "Rider Name".
 
 ## Visual system
@@ -60,7 +62,7 @@ Tokens in `_sass/_tokens.scss`.
 - Colours: ink `#0B0B0B`, paper `#FFFFFF`, off-white `#F4F1EA`, red `#D7000F` (text/buttons on light), bright red `#FF3B3B` (text on ink only). Red `#D7000F` on ink is 3.65:1 — large display text and decoration only.
 - Type: Anton (display, caps) + Atkinson Hyperlegible (body, ≥1.125rem).
 - Look: big condensed headings, thick red racing stripes, slight diagonal edges, hard offset shadows (no blur), sticker-style tags. No faux-Japanese styling; the real logo comes from the team's designer (set `logo:` in `_config.yml` when ready).
-- Components: `.button`, `.card-grid` + `.card`, `.tag-list` + `.tag`, `.section--alt`, `.placeholder`, `.rider-grid` + `.rider` (via `_includes/rider-card.html`).
+- Components: `.button`, `.card-grid` + `.card`, `.tag-list` + `.tag`, `.section--alt`, `.placeholder`, `.rider-grid` + `.rider` + `.rider__media` (via `_includes/rider-card.html`).
 
 ## Accessibility (non-negotiable)
 

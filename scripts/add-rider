@@ -1,0 +1,150 @@
+#!/bin/bash
+#
+# Add a rider to the Team page.
+#
+#   scripts/add-rider [photo]
+#
+# Drag a photo into the terminal when asked (or pass it as an argument), answer
+# a few questions, and this will:
+#   - make a square 800px colour JPG and a black & white JPG, metadata stripped
+#     (phone photos carry GPS location; it never reaches the site)
+#   - add the rider to _data/riders.yml
+# It doesn't commit anything. Needs ImageMagick: brew install imagemagick
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+RIDERS_YML="_data/riders.yml"
+PHOTO_DIR="assets/images/riders"
+SIZE=800
+MAX_BYTES=204800 # 200KB
+
+die() { printf '\n✗ %s\n' "$*" >&2; exit 1; }
+ask() { local reply; read -r -p "$1" reply || true; printf '%s' "$reply"; }
+is_yes() { case "$1" in [yY]|[yY][eE][sS]) return 0 ;; *) return 1 ;; esac; }
+trim() { sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//'; }
+bytes() { stat -f%z "$1"; }
+
+command -v magick >/dev/null 2>&1 || die "ImageMagick isn't installed. Run: brew install imagemagick"
+[ -f "$RIDERS_YML" ] || die "Can't find $RIDERS_YML. Is this the NGR repo?"
+
+echo "NGR: add a rider"
+echo "----------------"
+
+# --- Photo -------------------------------------------------------------------
+raw="${1:-}"
+[ -n "$raw" ] || raw=$(ask "Drag the photo into this window, then press Enter: ")
+photo=$(printf '%s' "$raw" | trim)
+# Dropped paths arrive quoted ('/a b.jpg') or escaped (/a\ b.jpg)
+case "$photo" in
+  \'*\') photo=${photo:1:${#photo}-2} ;;
+  \"*\") photo=${photo:1:${#photo}-2} ;;
+esac
+[ -f "$photo" ] || photo=$(printf '%s' "$photo" | sed -E 's/\\(.)/\1/g')
+[ -f "$photo" ] || die "Can't find a file at: $photo"
+magick identify "${photo}[0]" >/dev/null 2>&1 || die "That doesn't look like an image ImageMagick can read: $photo"
+
+# --- Rider details -----------------------------------------------------------
+name=$(ask "Rider name (as they want it shown): " | trim)
+[ -n "$name" ] || die "A name is needed."
+racing_in=$(ask "Racing in (town, city or region, never an address): " | trim)
+[ -n "$racing_in" ] || die "A 'racing in' location is needed."
+is_yes "$(ask "Has $name agreed to be on the site? [y/N] ")" || die "No problem. Nothing was changed. Ask them first."
+
+slug=$(printf '%s' "$name" | iconv -f UTF-8 -t ASCII//TRANSLIT 2>/dev/null | tr -d "'\"^~\`" \
+  | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//') || true # macOS iconv exits 1 after transliterating
+[ -n "$slug" ] || die "Couldn't make a filename from that name."
+
+colour="$PHOTO_DIR/$slug.jpg"
+bw="$PHOTO_DIR/$slug-bw.jpg"
+
+# Names already on the team page (any YAML quoting)
+if ruby -ryaml -e 'exit((YAML.load_file(ARGV[0]) || []).any? { |r| r["name"].to_s.casecmp?(ARGV[1]) } ? 0 : 1)' \
+     "$RIDERS_YML" "$name"; then
+  is_yes "$(ask "$name is already in $RIDERS_YML. Add another entry anyway? [y/N] ")" || die "Nothing was changed."
+fi
+if [ -e "$colour" ] || [ -e "$bw" ]; then
+  is_yes "$(ask "Photos for '$slug' already exist. Overwrite them? [y/N] ")" || die "Nothing was changed."
+fi
+
+# --- Images ------------------------------------------------------------------
+backup=$(mktemp)
+cp "$RIDERS_YML" "$backup"
+done_ok=0
+cleanup() {
+  if [ "$done_ok" -ne 1 ]; then
+    rm -f "$colour" "$bw"
+    cp "$backup" "$RIDERS_YML"
+  fi
+  rm -f "$backup"
+}
+trap cleanup EXIT
+
+mkdir -p "$PHOTO_DIR"
+echo
+echo "Processing photo…"
+
+render() { # render <output> <quality> [extra magick options…]
+  local out=$1 quality=$2; shift 2
+  magick "${photo}[0]" -auto-orient -strip -colorspace sRGB \
+    -resize "${SIZE}x${SIZE}^" -gravity center -extent "${SIZE}x${SIZE}" \
+    "$@" -quality "$quality" -sampling-factor 4:2:0 -interlace JPEG "$out"
+}
+
+for target in colour bw; do
+  if [ "$target" = colour ]; then out=$colour; extra=(); else out=$bw; extra=(-colorspace Gray -contrast-stretch 0.5%x0.5%); fi
+  for q in 72 60 50; do
+    render "$out" "$q" ${extra[@]+"${extra[@]}"}
+    [ "$(bytes "$out")" -le "$MAX_BYTES" ] && break
+  done
+  [ "$(bytes "$out")" -le "$MAX_BYTES" ] || echo "  ! $out is still over 200KB. It'll work, but it's a heavy image."
+  [ -z "$(magick identify -format '%[EXIF:*]' "$out" 2>/dev/null)" ] || die "Metadata survived on $out. Not saving anything."
+done
+
+# --- riders.yml --------------------------------------------------------------
+if grep -q '^- name: Rider Name$' "$RIDERS_YML"; then
+  reply=$(ask "Remove the 'Rider Name' placeholder entries? [Y/n] ")
+  reply=${reply:-y}
+  is_yes "$reply" || reply=""
+fi
+if [ -n "${reply:-}" ]; then
+  # Entries are blank-line separated; drop the placeholder paragraphs
+  awk 'BEGIN { RS = ""; ORS = "\n\n" } $0 !~ /^- name: Rider Name\n/' "$RIDERS_YML" > "$RIDERS_YML.tmp"
+  mv "$RIDERS_YML.tmp" "$RIDERS_YML"
+fi
+
+yaml_str() { printf '"%s"' "$(printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g')"; }
+
+# Exactly one blank line before the new entry
+printf '%s\n' "$(cat "$RIDERS_YML")" > "$RIDERS_YML.tmp" && mv "$RIDERS_YML.tmp" "$RIDERS_YML"
+cat >> "$RIDERS_YML" <<EOF
+
+- name: $(yaml_str "$name")
+  photo: /$colour
+  photo_bw: /$bw
+  racing_in: $(yaml_str "$racing_in")
+EOF
+
+ruby -ryaml -e 'YAML.load_file(ARGV[0])' "$RIDERS_YML" 2>/dev/null \
+  || die "Something went wrong writing $RIDERS_YML. It's been put back as it was."
+
+done_ok=1
+
+# --- Done --------------------------------------------------------------------
+kb() { echo "$(( ($(bytes "$1") + 1023) / 1024 ))KB"; }
+cat <<EOF
+
+✓ Added $name
+
+  $colour  ($(kb "$colour"))
+  $bw  ($(kb "$bw"))
+  $RIDERS_YML  (new entry at the end)
+
+Preview: bundle exec jekyll serve --livereload, then open http://127.0.0.1:4000/team/
+
+When it looks right:
+  git add $RIDERS_YML $PHOTO_DIR
+  git commit -m "Add rider: $name"
+  git push
+EOF
