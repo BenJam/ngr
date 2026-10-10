@@ -1,10 +1,17 @@
-title: Team Name
-description: Bicycle racing team — placeholder tagline
-theme: jekyll-theme-cayman
+title: No Good Racing
+description: Bike racing, without the BS
+lang: en-GB
+url: https://nogoodracing.cc
+# Path to the team logo once the designer delivers it, e.g. /assets/images/logo.svg
+logo:
+
+# Our theme lives in this repo; stop github-pages applying its default (Primer)
+theme: null
+
 plugins:
   - jekyll-seo-tag
 
-# Header navigation (rendered as buttons by _layouts/default.html)
+# Header + footer navigation
 nav:
   - title: About
     url: /about/
@@ -20,3 +27,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - CLAUDE.md

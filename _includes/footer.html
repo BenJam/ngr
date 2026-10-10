@@ -1,0 +1,13 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__tagline">No pressure, just good times.</p>
+    <nav aria-label="Footer">
+      <ul role="list">
+        {% for item in site.nav %}
+        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <p class="site-footer__small">&copy; {{ site.time | date: '%Y' }} {{ site.title }}. An homage, not an affiliate.</p>
+  </div>
+</footer>

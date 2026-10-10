@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <h1 id="hero-title" class="hero__title">{{ site.title }}</h1>
+    <p class="hero__tagline">{{ site.description }}</p>
+    {% if page.cta %}<a class="button" href="{{ page.cta.url | relative_url }}">{{ page.cta.label }}</a>{% endif %}
+  </div>
+</section>
+
+<div class="wrap prose">
+  {{ content }}
+</div>
+
+{% if page.cards %}
+<section class="section section--alt" aria-labelledby="sections-title">
+  <div class="wrap">
+    <h2 id="sections-title" class="section__title">{{ page.cards_title | default: "Find your way" }}</h2>
+    <ul class="card-grid" role="list">
+      {% for card in page.cards %}
+      <li class="card">
+        <h3 class="card__title"><a href="{{ card.url | relative_url }}">{{ card.title }}</a></h3>
+        <p>{{ card.text }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}

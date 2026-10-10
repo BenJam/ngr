@@ -1,0 +1,188 @@
+.wrap {
+  max-width: $wrap;
+  margin-inline: auto;
+  padding-inline: $gutter;
+}
+
+// Header -------------------------------------------------------------
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: $ink;
+  color: $paper;
+  border-bottom: $stripe solid $red;
+
+  a { color: $paper; text-decoration: none; }
+  :focus-visible { outline-color: $paper; }
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.75rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  font-family: $font-display;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.wordmark__badge {
+  background: $red;
+  color: $paper;
+  padding: 0.3rem 0.5rem 0.2rem;
+  transform: skewX(-10deg);
+}
+
+.wordmark__logo { height: 2.75rem; width: auto; }
+
+.site-nav ul,
+.site-footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: $font-display;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+  border-bottom: 0.25rem solid transparent;
+  transition: border-color 0.15s;
+
+  &:hover { border-bottom-color: $paper; }
+  &[aria-current="page"] { border-bottom-color: $red-bright; }
+}
+
+// Page title band ----------------------------------------------------
+.page-band {
+  background: $ink;
+  color: $paper;
+  padding-block: clamp(2.5rem, 8vw, 5rem) calc(clamp(2.5rem, 8vw, 5rem) + #{$slant});
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$slant}), 0 100%);
+}
+
+.page-band__title {
+  margin: 0;
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  line-height: 0.95;
+
+  &::after { // racing stripe
+    content: "";
+    display: block;
+    width: 6ch;
+    height: $stripe * 1.5;
+    margin-top: 1rem;
+    background: $red;
+  }
+}
+
+.page-band__intro {
+  max-width: 40ch;
+  margin: 1.25rem 0 0;
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+// Hero ---------------------------------------------------------------
+.hero {
+  background: $ink;
+  color: $paper;
+  padding-block: clamp(3.5rem, 12vw, 8rem) calc(clamp(3.5rem, 12vw, 8rem) + #{$slant});
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$slant}), 0 100%);
+  border-top: 0; // header stripe sits directly above
+
+  :focus-visible { outline-color: $paper; }
+}
+
+.hero__title {
+  margin: 0;
+  font-size: clamp(3.5rem, 15vw, 10rem);
+  line-height: 0.88;
+  max-width: 8ch;
+}
+
+.hero__tagline {
+  display: inline-block;
+  margin: 1.5rem 0 2rem;
+  padding: 0.25rem 0.75rem;
+  background: $red;
+  color: $paper;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  transform: skewX(-8deg);
+}
+
+// Body ---------------------------------------------------------------
+.prose {
+  padding-block: 1rem 3rem;
+
+  > * { max-width: $measure; }
+  > .card-grid, > .tag-list { max-width: none; }
+
+  h2::after {
+    content: "";
+    display: block;
+    width: 3ch;
+    height: $stripe;
+    margin-top: 0.5rem;
+    background: $red;
+  }
+}
+
+.lead {
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.section { padding-block: 3rem 4rem; }
+.section--alt { background: $off-white; }
+.section__title { margin-top: 0; }
+
+// Footer -------------------------------------------------------------
+.site-footer {
+  background: $ink;
+  color: $paper;
+  border-top: $stripe solid $red;
+  padding-block: 2.5rem;
+
+  a { color: $paper; }
+  a:hover { color: $red-bright; }
+  :focus-visible { outline-color: $paper; }
+  li a { display: inline-flex; align-items: center; min-height: 2.75rem; }
+}
+
+.site-footer__inner {
+  display: grid;
+  gap: 1rem;
+}
+
+.site-footer__tagline {
+  margin: 0;
+  font-family: $font-display;
+  text-transform: uppercase;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1;
+}
+
+.site-footer__small {
+  margin: 0;
+  font-size: 0.9375rem;
+}
