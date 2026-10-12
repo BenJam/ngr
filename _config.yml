@@ -3,7 +3,7 @@ description: Bike racing, without the bullsh*t
 lang: en-GB
 url: https://nogoodracing.cc
 # Team logo, shown in the header (replaces the text wordmark)
-logo: /assets/images/logo-simple.svg
+logo: /assets/images/logo-alt.svg
 
 # Our theme lives in this repo; stop github-pages applying its default (Primer)
 theme: null

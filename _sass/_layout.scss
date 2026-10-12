@@ -118,7 +118,16 @@
   margin: 0;
   font-size: clamp(3.5rem, 15vw, 10rem);
   line-height: 0.88;
-  max-width: 8ch;
+}
+
+// Lettering artwork, one word per line; sized in em so it scales with the
+// title (and with zoom). currentColor keeps it visible in forced-colours mode.
+.hero__word {
+  display: block;
+  width: auto;
+  height: 0.75em;
+  max-width: 100%;
+  & + & { margin-top: 0.13em; }
 }
 
 // Tagline + CTA: side by side with a clear gap; the button wraps below on narrow screens

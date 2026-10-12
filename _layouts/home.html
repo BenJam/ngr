@@ -3,7 +3,10 @@ layout: default
 ---
 <section class="hero" aria-labelledby="hero-title">
   <div class="wrap">
-    <h1 id="hero-title" class="hero__title">{{ site.title }}</h1>
+    <h1 id="hero-title" class="hero__title">
+      <span class="visually-hidden">{{ site.title }}</span>
+      <span class="hero__lettering" aria-hidden="true">{% include svg/no-good.svg %}{% include svg/racing.svg %}</span>
+    </h1>
     <div class="hero__row">
       <p class="hero__tagline">{{ site.description }}</p>
       {% if page.cta %}<a class="button" href="{{ page.cta.url | relative_url }}">{{ page.cta.label }}</a>{% endif %}
