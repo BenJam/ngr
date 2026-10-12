@@ -61,7 +61,7 @@ Tokens in `_sass/_tokens.scss`.
 
 - Colours: ink `#0B0B0B`, paper `#FFFFFF`, off-white `#F4F1EA`, red `#D7000F` (text/buttons on light), bright red `#FF3B3B` (text on ink only). Red `#D7000F` on ink is 3.65:1 — large display text and decoration only.
 - Type: Anton (display, caps) + Atkinson Hyperlegible (body, ≥1.125rem).
-- Look: big condensed headings, thick red racing stripes, slight diagonal edges, hard offset shadows (no blur), sticker-style tags. No faux-Japanese styling; the real logo comes from the team's designer (set `logo:` in `_config.yml` when ready).
+- Look: big condensed headings, thick red racing stripes, slight diagonal edges, hard offset shadows (no blur), sticker-style tags. No faux-Japanese styling; the logo is from the team's designer (`assets/images/logo-simple.svg`, set via `logo:` in `_config.yml`; header height `2.75rem`/44px).
 - Components: `.button`, `.card-grid` + `.card`, `.tag-list` + `.tag`, `.section--alt`, `.placeholder`, `.rider-grid` + `.rider` + `.rider__media` (via `_includes/rider-card.html`).
 
 ## Accessibility (non-negotiable)
