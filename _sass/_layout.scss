@@ -105,7 +105,13 @@
 
 // Hero ---------------------------------------------------------------
 .hero {
-  background: $ink;
+  // Decorative hand: big, behind the text; the bottom is allowed to run off
+  // the hero (clip-path crops it). It overhangs the right edge on phones, then
+  // lags further behind the edge as the screen widens: the right offset grows
+  // at 0.1, 0.2, then 0.3 of the extra width, so the hand keeps moving right
+  // at 0.9, 0.8, then 0.7 of the edge's speed. Segments meet at 40, 72, 100rem.
+  $hand-right: unquote("max(-2rem, (100vw - 40rem) * 0.1 - 2rem, (100vw - 72rem) * 0.2 + 1.2rem, (100vw - 100rem) * 0.3 + 6.8rem)");
+  background: $ink url("../images/big-hand.svg") no-repeat right $hand-right top 1.5rem / clamp(22rem, 62vw, 50rem);
   color: $paper;
   padding-block: clamp(3.5rem, 12vw, 8rem) calc(clamp(3.5rem, 12vw, 8rem) + #{$slant});
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - #{$slant}), 0 100%);
