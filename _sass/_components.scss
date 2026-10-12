@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 2.75rem;
   padding: 0.75rem 1.5rem;
-  background: $red;
+  background: $red-text;
   color: $paper;
   border: 0.1875rem solid $ink;
   box-shadow: $shadow;
@@ -28,6 +28,13 @@
   border-color: $paper;
   box-shadow: 0.375rem 0.375rem 0 $paper;
   &:hover { box-shadow: 0.25rem 0.25rem 0 $paper; }
+}
+
+// Home hero CTA in the logo red. White on $red is 4.17:1, so the label must
+// stay WCAG "large" (>= 24px) to pass 3:1 - don't shrink it below 1.5rem.
+.hero .button {
+  background: $red;
+  font-size: 1.5rem;
 }
 
 // Cards --------------------------------------------------------------
@@ -76,7 +83,7 @@
   a {
     color: $ink;
     text-decoration: none;
-    &:hover { color: $red; }
+    &:hover { color: $red-text; }
     // whole card clickable, link text still the accessible name
     &::after { content: ""; position: absolute; inset: 0; }
   }
@@ -111,7 +118,7 @@
   letter-spacing: 0.04em;
   transform: rotate(-2deg);
 
-  &:nth-child(even) { transform: rotate(1.5deg); background: $red; }
+  &:nth-child(even) { transform: rotate(1.5deg); background: $red-text; }
 }
 
 .tag--muted {
